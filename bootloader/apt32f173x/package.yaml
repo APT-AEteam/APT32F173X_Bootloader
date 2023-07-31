@@ -1,0 +1,42 @@
+hw_info:
+  cpu_id: ""
+  cpu_name: e906fp
+  vendor_name: ""
+  chip_name: ""
+  board_name: ""
+  ld_script: ../board/gcc_flash_1732.ld
+  flash_program: ""
+def_config:
+  CONFIG_ARCH_INTERRUPTSTACK: 512
+  IS_CHIP_1732: 1
+name: apt32f173x
+version: v1.0.0
+description: 我的第一个方案工程
+tag: ""
+keywords: 
+author:
+  name: ""
+license: ""
+type: solution
+depends:
+  - sdk_173x: v1.0.0
+build_config:
+  include:
+    - include
+    - ./
+    - src/include/
+  internal_include: 
+  cflag: -Og
+  cxxflag: -Og
+  asmflag: -Wa,--gdwarf2
+  define: 
+  libs:
+    - libcsi_xt900p32f_dsp.a
+  libpath:
+    - ../components/csi/dsp/lib/
+source_file:
+  - src/*.c
+depends_forward:
+  - sdk_173x: v1.0.0
+install: 
+homepage: 
