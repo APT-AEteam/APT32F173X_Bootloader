@@ -91,7 +91,7 @@ __attribute__((weak)) void system_init(void)
 	csi_vic_enable_irq(SOFTWARE_IRQn);
 	
 	csi_iwdt_close();				  //close iwdt
-	csi_sysclk_config(g_tClkConfig);  //sysclk config	
+	csi_bootloader_sysclk_config();
 
 	//_system_init_for_baremetal();
 	//csi_tick_init();

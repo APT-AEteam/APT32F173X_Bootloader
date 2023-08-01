@@ -212,6 +212,7 @@ extern uint32_t g_wSystemClk;
  */ 
 csi_error_t csi_sysclk_config(csi_clk_config_t tClkCfg);
 
+csi_error_t csi_bootloader_sysclk_config(void);
 
 /** \brief PLL clk manual config
  * 

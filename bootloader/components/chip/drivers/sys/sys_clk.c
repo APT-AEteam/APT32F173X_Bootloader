@@ -297,6 +297,22 @@ csi_error_t csi_sysclk_config(csi_clk_config_t tClkCfg)
 	return ret;
 }
 
+csi_error_t csi_bootloader_sysclk_config(void)
+{	
+	csi_error_t ret = CSI_OK;
+	uint8_t byFlashLp = 0;
+
+	ret = csi_hfosc_enable(0);
+	IFC->CEDR = IFC_CLKEN;
+	csp_ifc_flash_set_speed_wait(IFC, HIGH_SPEED,PF_WAIT1);
+	csp_set_sdiv(SYSCON, 1);
+	csp_set_clksrc(SYSCON, SRC_HFOSC);
+	csp_eflash_lpmd_enable(SYSCON, (bool)byFlashLp);
+	csp_set_pdiv(SYSCON, PCLK_DIV1);
+	
+	return ret;
+}
+
 /** \brief PLL clk manual config
  * 
  *  \param[in] tPllCfg: pll clock configuration 
