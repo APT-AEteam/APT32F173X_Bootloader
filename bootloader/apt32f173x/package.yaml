@@ -7,7 +7,7 @@ hw_info:
   ld_script: ../board/gcc_flash_1732.ld
   flash_program: ""
 def_config:
-  CONFIG_ARCH_INTERRUPTSTACK: 512
+  CONFIG_ARCH_INTERRUPTSTACK: 1024
   IS_CHIP_1732: 1
 name: apt32f173x
 version: v1.0.0

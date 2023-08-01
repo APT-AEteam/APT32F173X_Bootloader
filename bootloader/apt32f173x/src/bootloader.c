@@ -224,12 +224,12 @@ int bootloader_program_flash(void)
 	while(1){
 		if(wRecBufLen/BOOT_INTEVAL_SIZE > 0){
 			if(wAddrOffset <= ROM_END_ADDR - BOOT_INTEVAL_SIZE){
-				csi_ifc_pflash_page_program(IFC, wAddrOffset, (uint32_t *)&(byRwBuffer[programcnt]), BOOT_INTEVAL_SIZE);
-				//csi_ifc_program(IFC, wAddrOffset, (uint32_t *)&(byRwBuffer[programcnt]), BOOT_INTEVAL_SIZE);  		
+				//csi_ifc_pflash_page_program(IFC, wAddrOffset, (uint32_t *)&(byRwBuffer[programcnt]), BOOT_INTEVAL_SIZE);
+				csi_ifc_program(IFC, wAddrOffset, (uint32_t *)&(byRwBuffer[programcnt]), BOOT_INTEVAL_SIZE);  		
 			}
 			else{
-				csi_ifc_pflash_page_program(IFC, wAddrOffset, (uint32_t *)&(byRwBuffer[programcnt]), ROM_END_ADDR - wAddrOffset);  
-				//csi_ifc_program(IFC, wAddrOffset, (uint32_t *)&(byRwBuffer[programcnt]), ROM_END_ADDR - wAddrOffset);  
+				//csi_ifc_pflash_page_program(IFC, wAddrOffset, (uint32_t *)&(byRwBuffer[programcnt]), ROM_END_ADDR - wAddrOffset);  
+				csi_ifc_program(IFC, wAddrOffset, (uint32_t *)&(byRwBuffer[programcnt]), ROM_END_ADDR - wAddrOffset);  
 				break;
 			}
 			bootloader_send_ack(byProgAck,4);
@@ -307,7 +307,6 @@ int bootloader_program_verify(void)
 	if(wCheckNum != wCheck_Sum) {
 		return BOOT_ERROR;
 	}
-	//my_printf("\n# VrfCkSum:0x%x\n",wCheck_Sum);
 	bootloader_send_back_str("CkSum",5);
 	bootloader_send_back_num(wCheck_Sum);  
 	bootloader_send_back_str("\n",1);
@@ -322,6 +321,7 @@ int bootloader_program_verify(void)
 uint8_t bootloader_program_option(void)
 {
 	uint8_t bootopt = 0;
+	
 	if((bootloader_wait_syncpin_release() == 1)&&(csp_get_ureg(SYSCON, USER_REG0) == 0))
 	{
 		bootopt = JUMPAPP_MODE;
@@ -342,16 +342,6 @@ uint32_t bootloader_get_cmd_value(void)
 	return wValue;	
 }
 
-/*
-void bootloader_buf_reset(void)
-{
-	uint16_t i;
-	for(i = 0;i < BOOT_BUF_SIZE;i ++)
-	{
-		byRwBuffer[i] = 0x00;
-	}
-}
-*/
 /***********************************************************************
 
 函数功能：boot APP升级初始化
@@ -547,7 +537,7 @@ void bootloader_reset(void)
 void bootloader_system_init(void)
 {
 	SYSCON->PCER0=0xFFFFFFF;  
-//	csi_bootloader_sysclk_config();
+	csi_bootloader_sysclk_config();
 	
 	CK_CPU_ENALLNORMALIRQ;
 	csi_iwdt_close();				//close iwdt

@@ -304,11 +304,13 @@ csi_error_t csi_bootloader_sysclk_config(void)
 
 	ret = csi_hfosc_enable(0);
 	IFC->CEDR = IFC_CLKEN;
+//	IFC->MR = HIGH_SPEED | PF_WAIT1;
 	csp_ifc_flash_set_speed_wait(IFC, HIGH_SPEED,PF_WAIT1);
 	csp_set_sdiv(SYSCON, 1);
 	csp_set_clksrc(SYSCON, SRC_HFOSC);
 	csp_eflash_lpmd_enable(SYSCON, (bool)byFlashLp);
 	csp_set_pdiv(SYSCON, PCLK_DIV1);
+//	csp_set_pdiv(SYSCON, 0);
 	
 	return ret;
 }
