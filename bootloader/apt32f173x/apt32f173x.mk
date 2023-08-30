@@ -9,8 +9,8 @@ WorkspacePath          :=./
 ProjectPath            :=./
 IntermediateDirectory  :=Obj
 OutDir                 :=$(IntermediateDirectory)
-User                   :=yuanym
-Date                   :=31/07/2023
+User                   :=luhy
+Date                   :=30/08/2023
 CDKPath                :=D:/C-Sky/CDK
 ToolchainPath          :=D:/C-Sky/CDKRepo/Toolchain/XTGccElfNewlib/V2.6.1/R/
 LinkerName             :=riscv64-unknown-elf-gcc
@@ -43,11 +43,10 @@ OutputFile             :=$(ProjectName)
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
-PreprocessOnlyDisableLineSwitch   :=-P
 ObjectsFileList        :=apt32f173x.txt
 MakeDirCommand         :=mkdir
-LinkOptions            :=   --specs=nosys.specs  -nostartfiles  -Wl,--gc-sections  -T../board/gcc_flash_1732.ld  -mabi=ilp32f -mtune=e906 -march=rv32imafcpzpsfoperand_xtheade 
-LinkOtherFlagsOption   :=   -Wl,-Map=$(ProjectPath)/Lst/$(OutputFile).map 
+LinkOptions            :=   -nostartfiles  -Wl,--gc-sections  -T../board/gcc_flash_1732.ld  -mabi=ilp32f -mtune=e906 -march=rv32imafcpzpsfoperand_xtheade 
+LinkOtherFlagsOption   :=   
 IncludePackagePath     :=
 IncludeCPath           :=$(IncludeSwitch)../components/chip/include $(IncludeSwitch)../components/chip/drivers/sys $(IncludeSwitch)../board/include $(IncludeSwitch)../components/console/include $(IncludeSwitch)../components/csi/include $(IncludeSwitch)../components/csi/include/core $(IncludeSwitch)../components/csi/include/drv $(IncludeSwitch)../components/csi/dsp/ $(IncludeSwitch)../components/csi/dsp/include/  $(IncludeSwitch)include $(IncludeSwitch). $(IncludeSwitch)src/include/  
 IncludeAPath           :=$(IncludeSwitch)../components/chip/include $(IncludeSwitch)../components/chip/drivers/sys $(IncludeSwitch)../board/include $(IncludeSwitch)../components/console/include $(IncludeSwitch)../components/csi/include $(IncludeSwitch)../components/csi/include/core $(IncludeSwitch)../components/csi/include/drv $(IncludeSwitch)../components/csi/dsp/ $(IncludeSwitch)../components/csi/dsp/include/  $(IncludeSwitch)include $(IncludeSwitch). $(IncludeSwitch)src/include/  
@@ -66,10 +65,9 @@ CC       :=riscv64-unknown-elf-gcc
 AS       :=riscv64-unknown-elf-gcc
 OBJDUMP  :=riscv64-unknown-elf-objdump
 OBJCOPY  :=riscv64-unknown-elf-objcopy
-CXXFLAGS := $(PreprocessorSwitch)USE_APT32F173X_CHIP $(PreprocessorSwitch)USE_APT32F173X_EVB $(PreprocessorSwitch)USE_APT_CONSOLE $(PreprocessorSwitch)USE_APT_CSI $(PreprocessorSwitch)USE_SDK_173X  -Og  -g3  -ffunction-sections -Wno-unused-function -Og  -g  -Wall  -ffunction-sections -nostdlib -Wpointer-arith -Wl,-EL -fdata-sections -fdata-sections -g $(PreprocessorSwitch)CONFIG_ARCH_INTERRUPTSTACK=512 $(PreprocessorSwitch)IS_CHIP_1732=1   -mabi=ilp32f -mtune=e906 -march=rv32imafcpzpsfoperand_xtheade   -Og 
-CFLAGS   := $(PreprocessorSwitch)USE_APT32F173X_CHIP $(PreprocessorSwitch)USE_APT32F173X_EVB $(PreprocessorSwitch)USE_APT_CONSOLE $(PreprocessorSwitch)USE_APT_CSI $(PreprocessorSwitch)USE_SDK_173X  -Og  -g3  -ffunction-sections -Wno-unused-function -Og  -g  -Wall  -ffunction-sections -nostdlib -Wpointer-arith -Wl,-EL -fdata-sections -fdata-sections -g $(PreprocessorSwitch)CONFIG_ARCH_INTERRUPTSTACK=512 $(PreprocessorSwitch)IS_CHIP_1732=1   -mabi=ilp32f -mtune=e906 -march=rv32imafcpzpsfoperand_xtheade   -Og 
-ASFLAGS  := $(PreprocessorSwitch)USE_APT32F173X_CHIP $(PreprocessorSwitch)USE_APT32F173X_EVB $(PreprocessorSwitch)USE_APT_CONSOLE $(PreprocessorSwitch)USE_APT_CSI $(PreprocessorSwitch)USE_SDK_173X   -Wa,-gdwarf-2 $(PreprocessorSwitch)CONFIG_ARCH_INTERRUPTSTACK=512 $(PreprocessorSwitch)IS_CHIP_1732=1   -mabi=ilp32f -mtune=e906 -march=rv32imafcpzpsfoperand_xtheade   -Wa,-gdwarf-2 
-PreprocessFlags  := $(PreprocessorSwitch)USE_APT32F173X_CHIP $(PreprocessorSwitch)USE_APT32F173X_EVB $(PreprocessorSwitch)USE_APT_CONSOLE $(PreprocessorSwitch)USE_APT_CSI $(PreprocessorSwitch)USE_SDK_173X  -Og     -ffunction-sections -Wno-unused-function -Og  -g  -Wall  -ffunction-sections -nostdlib -Wpointer-arith -Wl,-EL -fdata-sections -fdata-sections -g $(PreprocessorSwitch)CONFIG_ARCH_INTERRUPTSTACK=512 $(PreprocessorSwitch)IS_CHIP_1732=1   -mabi=ilp32f -mtune=e906 -march=rv32imafcpzpsfoperand_xtheade   -Og 
+CXXFLAGS := $(PreprocessorSwitch)USE_APT32F173X_CHIP $(PreprocessorSwitch)USE_APT32F173X_EVB $(PreprocessorSwitch)USE_APT_CONSOLE $(PreprocessorSwitch)USE_APT_CSI $(PreprocessorSwitch)USE_SDK_173X  -Og  -g3  -ffunction-sections -Wno-unused-function -Og  -g  -Wall  -ffunction-sections -nostdlib -Wpointer-arith -Wl,-EL -fdata-sections -fdata-sections -g $(PreprocessorSwitch)CONFIG_ARCH_INTERRUPTSTACK=1024 $(PreprocessorSwitch)IS_CHIP_1732=1   -mabi=ilp32f -mtune=e906 -march=rv32imafcpzpsfoperand_xtheade   -Og 
+CFLAGS   := $(PreprocessorSwitch)USE_APT32F173X_CHIP $(PreprocessorSwitch)USE_APT32F173X_EVB $(PreprocessorSwitch)USE_APT_CONSOLE $(PreprocessorSwitch)USE_APT_CSI $(PreprocessorSwitch)USE_SDK_173X  -Og  -g3  -ffunction-sections -Wno-unused-function -Og  -g  -Wall  -ffunction-sections -nostdlib -Wpointer-arith -Wl,-EL -fdata-sections -fdata-sections -g $(PreprocessorSwitch)CONFIG_ARCH_INTERRUPTSTACK=1024 $(PreprocessorSwitch)IS_CHIP_1732=1   -mabi=ilp32f -mtune=e906 -march=rv32imafcpzpsfoperand_xtheade   -Og 
+ASFLAGS  := $(PreprocessorSwitch)USE_APT32F173X_CHIP $(PreprocessorSwitch)USE_APT32F173X_EVB $(PreprocessorSwitch)USE_APT_CONSOLE $(PreprocessorSwitch)USE_APT_CSI $(PreprocessorSwitch)USE_SDK_173X   -Wa,--gdwarf2 $(PreprocessorSwitch)CONFIG_ARCH_INTERRUPTSTACK=1024 $(PreprocessorSwitch)IS_CHIP_1732=1   -mabi=ilp32f -mtune=e906 -march=rv32imafcpzpsfoperand_xtheade   -Wa,--gdwarf2 
 
 
 Objects0=$(IntermediateDirectory)/src_bootloader$(ObjectSuffix) $(IntermediateDirectory)/src_main$(ObjectSuffix) 
@@ -93,7 +91,7 @@ $(IntermediateDirectory)/$(OutputFile):  $(Objects) Always_Link
 	@$(SIZE) $(ProjectPath)$(IntermediateDirectory)/$(OutputFile)$(ExeSuffix) 
 	@echo -n checksum value of target:  
 	@$(CHECKSUM) $(ProjectPath)/$(IntermediateDirectory)/$(OutputFile)$(ExeSuffix) 
-	@apt32f173x.modify.bat $(IntermediateDirectory) $(OutputFile)$(ExeSuffix) 
+	@$(ProjectName).modify.bat $(IntermediateDirectory) $(OutputFile)$(ExeSuffix) 
 
 Always_Link:
 

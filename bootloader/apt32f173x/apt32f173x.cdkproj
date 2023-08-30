@@ -123,19 +123,24 @@
         <BeforeCompile>
           <RunUserProg>no</RunUserProg>
           <UserProgName/>
-          <IsBatchScript>no</IsBatchScript>
         </BeforeCompile>
         <BeforeMake>
           <RunUserProg>no</RunUserProg>
           <UserProgName/>
-          <IsBatchScript>no</IsBatchScript>
         </BeforeMake>
         <AfterMake>
           <RunUserProg>no</RunUserProg>
           <UserProgName/>
-          <IsBatchScript>no</IsBatchScript>
         </AfterMake>
-        <Tools/>
+        <Tools>
+          <Tool>
+            <Name>UpdateTool</Name>
+            <RunIndependent>yes</RunIndependent>
+            <Command>$(ProjectPath)/../../tool/upgrade_tool_v0.8.exe</Command>
+            <Args/>
+            <InitFolder/>
+          </Tool>
+        </Tools>
       </User>
       <Compiler>
         <Define/>
@@ -189,7 +194,6 @@
         <AfterResetFile/>
         <Dumpcore>no</Dumpcore>
         <DumpcoreText>$(ProjectPath)/$(ProjectName).cdkcore</DumpcoreText>
-        <SVCFile/>
         <ConfigICE>
           <IP>localhost</IP>
           <PORT>1025</PORT>
@@ -248,8 +252,6 @@
         <ResetAndRun>yes</ResetAndRun>
         <ResetType>Hard Reset</ResetType>
         <SoftResetVal>2</SoftResetVal>
-        <FlashIndex>no</FlashIndex>
-        <FlashIndexVal>0</FlashIndexVal>
         <External>no</External>
         <Command/>
         <Arguments/>
