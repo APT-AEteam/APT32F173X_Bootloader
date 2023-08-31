@@ -134,9 +134,9 @@
         </AfterMake>
         <Tools>
           <Tool>
-            <Name>UpdateTool</Name>
+            <Name>APT_BootloaderUpgradeTool</Name>
             <RunIndependent>yes</RunIndependent>
-            <Command>$(ProjectPath)/../../tool/upgrade_tool_v0.8.exe</Command>
+            <Command>$(ProjectPath)/../../tool/APT_BootloaderUpgradeTool.exe</Command>
             <Args/>
             <InitFolder/>
           </Tool>
